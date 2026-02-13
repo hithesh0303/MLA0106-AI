@@ -106,3 +106,49 @@ END FOR
 END WHILE
 RETURN NULL,-1
 END FUNCTION
+
+# Mini Max
+FUNCTION MINIMAX(depth,index,isMax)
+IF depth = MAX_DEPTH THEN
+RETURN score[index]
+ENDIF
+IF isMax = TRUE THEN
+RETURN MAX(
+MINIMAX(depth+1,index*2,FALSE),
+MINIMAX(depth+1,index*2+1,FALSE)
+)
+ELSE
+RETURN MIN(
+MINIMAX(depth+1,index*2,TRUE),
+MINIMAX(depth+1,index*2+1,TRUE)
+)
+ENDIF
+END FUNCTION
+
+# Alpha–Beta pruning Pseudocode
+FUNCTION ALPHABETA(depth,index,isMax,alpha,beta)
+IF depth = MAX_DEPTH THEN
+RETURN scores[index]
+ENDIF
+IF isMax THEN
+value ← -∞
+FOR i ← 0 to 1 DO
+value ← MAX(value, ALPHABETA(depth+1,index*2+i,FALSE,alpha,beta))
+alpha ← MAX(alpha,value)
+IF beta ≤ alpha THEN
+BREAK
+ENDIF
+END FOR
+RETURN value
+ELSE
+value ← +∞
+FOR i ← 0 to 1 DO
+value ← MIN(value, ALPHABETA(depth+1,index*2+i,TRUE,alpha,beta))
+beta ← MIN(beta,value)
+IF beta ≤ alpha THEN
+BREAK
+ENDIF
+END FOR
+RETURN value
+END IF
+END FUNCTION
