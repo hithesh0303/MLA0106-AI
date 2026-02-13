@@ -219,3 +219,35 @@ ENDFOR
 ENDWHILE
 RETURN"No solution"
 END FUNCTION
+
+# Water Jug 3
+CAP←(3,5,8)
+START←(0,0,8)
+FUNCTION WATERJUG()
+create empty queue Q
+create empty set VISITED
+ENQUEUE(START,[START])into Q
+add START to VISITED
+WHILE Q not empty DO
+state,path←DEQUEUE Q
+(a,b,c)←state
+IF b=4 AND c=4 THEN
+RETURN path
+ENDIF
+FOR i←0 to 2 DO
+FOR j←0 to 2 DO
+IF i≠j AND state[i]>0 AND state[j]<CAP[j] THEN
+amt←MIN(state[i],CAP[j]-state[j])
+new←state
+new[i]←state[i]-amt
+new[j]←state[j]+amt
+IF new not in VISITED THEN
+add new to VISITED
+ENQUEUE(new,path+new)into Q
+ENDIF
+ENDIF
+ENDFOR
+ENDFOR
+ENDWHILE
+RETURN"No solution"
+END FUNCTION
