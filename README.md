@@ -88,3 +88,21 @@ END FOR
 END WHILE
 RETURN NULL
 END FUNCTION
+
+# A* search Pseudocode
+FUNCTION A_STAR(start,goal)
+CREATE priority_queue pq
+INSERT (h[start],0,start,[start]) into pq
+WHILE pq not empty DO
+(f,g,node,path) ← REMOVE_MIN(pq)
+IF node = goal THEN
+RETURN path,g
+ENDIF
+FOR each (neighbor,cost) in graph[node] DO
+g_new ← g + cost
+f_new ← g_new + h[neighbor]
+INSERT (f_new,g_new,neighbor,path+[neighbor]) into pq
+END FOR
+END WHILE
+RETURN NULL,-1
+END FUNCTION
