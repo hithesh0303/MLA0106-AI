@@ -66,3 +66,25 @@ END WHILE
 RETURN traversal_order
 END FUNCTION
 
+# Greedy best first search Pseudocode
+FUNCTION GREEDY_BEST_FIRST(start,goal)
+CREATE priority_queue pq
+INSERT (h[start],start,[start]) into pq
+CREATE visited set
+WHILE pq is not empty DO
+(_,node,path) ← REMOVE_MIN(pq)
+IF node = goal THEN
+RETURN path
+ENDIF
+IF node in visited THEN
+CONTINUE
+ENDIF
+ADD node to visited
+FOR each neighbor in graph[node] DO
+IF neighbor not in visited THEN
+INSERT (h[neighbor],neighbor,path+[neighbor]) into pq
+ENDIF
+END FOR
+END WHILE
+RETURN NULL
+END FUNCTION
