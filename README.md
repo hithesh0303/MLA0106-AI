@@ -181,6 +181,40 @@ IF S not in VISITED THEN
 add S to VISITED
 ENQUEUE(S,path+S)into Q
 ENDIF
+
+# Water Jug 2
+CAP_A←12
+CAP_B←8
+CAP_C←5
+TARGET←6
+FUNCTION WATER_JUG_BFS()
+start_state←(12,0,0)
+create empty queue Q
+create empty set VISITED
+ENQUEUE(start_state,[start_state])into Q
+add start_state to VISITED
+WHILE Q not empty DO
+(a,b,c),path←DEQUEUE Q
+IF a=TARGET OR b=TARGET OR c=TARGET THEN
+RETURN path
+ENDIF
+NEXT_STATES={
+(min(CAP_A,a+b),b-(min(CAP_A,a+b)-a),c),
+(min(CAP_A,a+c),b,c-(min(CAP_A,a+c)-a)),
+(a-(min(CAP_B,a+b)-b),min(CAP_B,a+b),c),
+(a,b-(min(CAP_C,b+c)-c),min(CAP_C,b+c)),
+(a-(min(CAP_C,a+c)-c),b,min(CAP_C,a+c)),
+(a,b-(min(CAP_A,b+a)-a),min(CAP_A,b+a))
+}
+FOR each S in NEXT_STATES DO
+IF S not in VISITED THEN
+add S to VISITED
+ENQUEUE(S,path+S)into Q
+ENDIF
+ENDFOR
+ENDWHILE
+RETURN"No solution"
+END FUNCTION
 ENDFOR
 ENDWHILE
 RETURN"No solution"
