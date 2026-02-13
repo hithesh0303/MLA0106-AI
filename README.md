@@ -152,3 +152,36 @@ END FOR
 RETURN value
 END IF
 END FUNCTION
+
+# Water Jug problem
+CAP_A←5
+CAP_B←3
+TARGET←4
+FUNCTION WATER_JUG_BFS()
+start_state←(0,0)
+create empty queue Q
+create empty set VISITED
+ENQUEUE(start_state,[start_state])into Q
+add start_state to VISITED
+WHILE Q not empty DO
+(a,b),path←DEQUEUE Q
+IF a=TARGET OR b=TARGET THEN
+RETURN path
+ENDIF
+NEXT_STATES={
+(CAP_A,b),
+(a,CAP_B),
+(0,b),
+(a,0),
+(a−min(a,CAP_B−b),b+min(a,CAP_B−b)),
+(a+min(b,CAP_A−a),b−min(b,CAP_A−a))
+}
+FOR each S in NEXT_STATES DO
+IF S not in VISITED THEN
+add S to VISITED
+ENQUEUE(S,path+S)into Q
+ENDIF
+ENDFOR
+ENDWHILE
+RETURN"No solution"
+END FUNCTION
