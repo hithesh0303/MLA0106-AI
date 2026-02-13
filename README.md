@@ -1,7 +1,7 @@
 # MLA0106-AI
+
 # BFS-PseudoCode
 FUNCTION BFS(graph, start_node)
-
 CREATE queue
 ENQUEUE start_node into queue
 CREATE visited set
