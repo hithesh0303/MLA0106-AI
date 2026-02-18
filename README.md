@@ -251,3 +251,109 @@ ENDFOR
 ENDWHILE
 RETURN"No solution"
 END FUNCTION
+
+# Sum of integers from 1 to N(prolog)
+START
+INPUT N
+SET sum = 0
+FOR i from 1 to N DO
+    sum = sum + i
+END FOR
+PRINT sum
+STOP
+
+# Name and DOB database(prolog)
+START
+STORE name and DOB in database
+
+INPUT name
+SEARCH name in database
+
+IF found THEN
+    PRINT DOB
+ELSE
+    PRINT "Not found"
+END IF
+STOP
+
+# Student–Teacher–Subject–Code database(prolog)
+START
+STORE student details
+STORE teacher details
+STORE subject and subject code
+STORE which teacher teaches which subject
+STORE which student studies which subject
+
+INPUT student name
+FIND subject studied by student
+FIND teacher who teaches that subject
+FIND subject code
+
+PRINT teacher name
+PRINT subject code
+STOP
+
+# Factorial(prolog)
+START
+INPUT N
+SET fact = 1
+
+FOR i from 1 to N DO
+    fact = fact * i
+END FOR
+
+PRINT fact
+STOP
+
+# Reverse a list(prolog)
+START
+INPUT list
+CREATE empty list called reverse
+
+FOR each element in list from last to first DO
+    ADD element to reverse list
+END FOR
+
+PRINT reverse list
+STOP
+
+# Length of list(prolog)
+START
+INPUT list
+SET count = 0
+
+FOR each element in list DO
+    count = count + 1
+END FOR
+
+PRINT count
+STOP
+
+# Path finding (Graph)
+START
+DEFINE connections between nodes
+
+INPUT start node and end node
+
+IF direct connection exists THEN
+    PRINT "Path exists"
+ELSE IF connection exists through intermediate node THEN
+    PRINT "Path exists"
+ELSE
+    PRINT "Path does not exist"
+END IF
+
+STOP
+
+# Student Teacher relation(prolog)
+START
+STORE student and subject
+STORE teacher and subject
+
+INPUT student name
+
+FIND subject studied by student
+FIND teacher who teaches that subject
+
+PRINT teacher name
+STOP
